@@ -13,7 +13,7 @@ var secondsLeft= 60;
 var questions = [
     {
       title: "Which Disney movie was the first?:",
-      choices: ["Sleeping-Beauty","Snow-White-and-the-Seven-Dwarfs","Pinocchio","The-Little-Mermaid"],
+      choices: ["Sleeping Beauty","Snow White and the Seven Dwarfs","Pinocchio","The Little Mermaid"],
       answer: "Snow White and the Seven Dwarfs"
     },
     {
@@ -27,9 +27,9 @@ var questions = [
         answer: "Super Mario 64"
     },
     {
-        title: "Which pokemon meet Ash in answers group sporting some cool shades?",
-        choices: ["Bulbasaur", "Charmander", "Squirtle", "Growlithe"],
-        answer: "Squirtle"
+        title: "Which show is based on 4 characters living in CO?",
+        choices: ["South Park", "Futurama", "The Big Bang", "Community"],
+        answer: "South Park"
     },
     {
         title: "What famous Witcher is known as the White Wolf?",
@@ -71,12 +71,15 @@ function getQuestions(){
 
     currentQuestion.choices.forEach(function(choice, i) {
         var choicebutton= document.createElement("button");
-            choicebutton.setAttribute("class", "choices");
-                choicebutton.setAttribute("value", QuestionChoice);
+            choicebutton.setAttribute("value", QuestionChoice);
                     choicebutton.textContent=i+ 1 + ". " + QuestionChoice;
-                        QuestionChoice.appendChild(choicebutton);
+                    QuestionChoice.appendChild(choicebutton);
+                    choicebutton.textContent= currentQuestion.choices[i];
     })
 }
+$("#Choices").on("Click",function(){
+
+});
 
 for (i=0; i < QuestionChoice.length; i++){
     var choicebutton=$("<button>");
