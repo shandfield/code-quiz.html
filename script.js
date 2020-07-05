@@ -111,16 +111,16 @@ function endquiz(){//need to stop the timer
     var end= document.getElementById("End"); 
         end.removeAttribute("class");
     var finalScore= document.getElementById ("Score");
-        finalScore.textContent=answer;
+        finalScore.textContent=score;
     console.log(score);
     Context.setAttribute("class","hide"); //the set attribute added the class of hide for the questions 
 }
 
-function resultsContainer(){
-    localStorage.setItem("results", JSON.stringify(results)
-    localStorage.setItem("name","score")
-    sessionStorage.setItem("name","score")
-    const name = localStorage.getItem("name"); 
-    console.log(name);
-    console.log(score);
-    )}
+// function resultsContainer(){
+//     localStorage.setItem("results", JSON.stringify(results)
+//     localStorage.setItem("name","score")
+//     sessionStorage.setItem("name","score")
+//     const name = localStorage.getItem("name"); 
+//     console.log(name);
+//     console.log(score);
+//     )}
