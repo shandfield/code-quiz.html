@@ -1,15 +1,15 @@
 var quizContainer = document.querySelector('quiz');
 var resultsContainer = document.querySelector('results');
 var startButton = document.getElementById('Start');
-
+var Context= document.getElementById("Context");//the holder for the questions, choices and answers
 var QuestionIndex= 0; 
 var QuestionChoice= document.getElementById("Choices");
 var AnswerIndex=0;
 var AnswerChoice= document.getElementById("Answer");
-var results= false;
 var timeEL= document.querySelector(".time");
 var mainEL= document.getElementById("main");
-var secondsLeft= 60;
+var time= 60;
+var timerID;//undefined 
 var questions = [
     {
       title: "Which Disney movie was the first?:",
@@ -58,8 +58,9 @@ var questions = [
 function startQuiz(){
     var begin= document.getElementById("Begin");
         begin.setAttribute( "class", "Hide");
-    var Context= document.getElementById("Context");
         Context.removeAttribute("class");
+    timerID= setInterval(clock,1000)//calling the timer and wanting it to run at 1000 millseconds 
+    timeEL.textContent=time;//this gives the time Element the number 
     getQuestions(); 
     }
 startButton.onclick= startQuiz; 
@@ -68,47 +69,58 @@ function getQuestions(){
       var currentQuestion= questions[QuestionIndex];
         var titlequestion= document.getElementById("Title"); 
             titlequestion.textContent= currentQuestion.title;
-
+            QuestionChoice.innerHTML="";//this will clear out the questions when it runs the function again 
     currentQuestion.choices.forEach(function(choice, i) {
         var choicebutton= document.createElement("button");
-            choicebutton.setAttribute("value", QuestionChoice);
-                    choicebutton.textContent=i+ 1 + ". " + QuestionChoice;
+            choicebutton.setAttribute("value", choice);
+                    choicebutton.textContent=i+ 1 + ". " + choice;
+                    choicebutton.onclick= questionClick; 
                     QuestionChoice.appendChild(choicebutton);
                     choicebutton.textContent= currentQuestion.choices[i];
     })
 }
-$("#Choices").on("Click",function(){
-
-});
-
-for (i=0; i < QuestionChoice.length; i++){
-    var choicebutton=$("<button>");
-        choicebutton.attr("choice-letter",QuestionChoice[i]);
-        choicebutton.text(QuestionChoice[i]); //choices
-        $("#button").append(choicebutton)
-}
-$('choice-button').on("click", function(){
-    var choicesMag= $('<div>');
-        choicesMag.addClass("Choices");
-        choicesMag.text($(this).attr("Choices"));
-        $('#display').append(QuestionChoice);
-});
-
-$("#results").on("Click", function(){
-    results= true;
-        if(QuestionChoice === AnswerChoice){
-            results= i +1
-        } else if (QuestionChoice != AnswerChoice){
-            total= i + 0;
-        }
-});
-function setTime(){
-    var timerInterval= setInterval(function(){
-        secondsLeft--;
-    if (secondsLeft=== 0){
-        clearInterval(timerInterval);
-        sendMessage();
+function questionClick(){
+    if (this.value !== questions[QuestionIndex].answer){
+        time -= 5; //this will either subtract 5 or make it 5 when wrong 
+        alert ("You are wrong");
+        timeEL.textContent=time
+    } else {
+        time += 5;//this will add time when correct
+        alert ("You are correct");
+        timeEL.textContent=time //this makes the time read out 
     }
-    }, 1000);
+    QuestionIndex ++; //this moves the question to the next one 
+    if (QuestionIndex=== questions.length){//this will stop the questions 
+        endquiz()//calling the function
+    } else {//if there are still questions to keep going
+        getQuestions ()//calling the function 
+    }
 }
-setTime();
+
+function clock (){//clock is used due to calling it from above
+    time--;//due to decreasing one each time 
+    timeEL.textContent= time;
+    if (time===0){
+        alert("Time has run out")
+        endquiz()//calling the function 
+    }
+}
+
+function endquiz(){//need to stop the timer
+    clearInterval(timerID);
+    var end= document.getElementById("End"); 
+        end.removeAttribute("class");
+    var finalScore= document.getElementById ("Score");
+        finalScore.textContent=answer;
+    console.log(score);
+    Context.setAttribute("class","hide"); //the set attribute added the class of hide for the questions 
+}
+
+function resultsContainer(){
+    localStorage.setItem("results", JSON.stringify(results)
+    localStorage.setItem("name","score")
+    sessionStorage.setItem("name","score")
+    const name = localStorage.getItem("name"); 
+    console.log(name);
+    console.log(score);
+    )}
