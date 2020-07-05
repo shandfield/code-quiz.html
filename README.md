@@ -1,5 +1,5 @@
 # code-quiz.html
-Quiz that contains about eight questions with 4 possible answer choices.
+Quiz that contains about eight questions with four possible answer choices.
 The game starts with showing you the rules, you can click on the "X" button to get rid of the rules.
 Once you hit the "start Quiz" button, the game begins. 
 A timer is displayed and it starts at 60 seconds, when you answer correctly you will get a notificaion at the top of the page. 
