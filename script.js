@@ -10,7 +10,6 @@ var timeEL= document.querySelector(".time");
 var mainEL= document.getElementById("main");
 var time= 60;
 var timerID;//undefined 
-var userPlay; 
 var questions = [
     {
       title: "Which Disney movie was the first?:",
@@ -89,6 +88,7 @@ function questionClick(){
         time += 5;//this will add time when correct
         alert ("You are correct");
         timeEL.textContent=time //this makes the time read out 
+        score++;
     }
     QuestionIndex ++; //this moves the question to the next one 
     if (QuestionIndex=== questions.length){//this will stop the questions 
@@ -113,8 +113,12 @@ function endquiz(){//need to stop the timer
         end.removeAttribute("class");
     var finalScore= document.getElementById ("Score");
         finalScore.textContent=score;
-    console.log(time);
-    localStorage.setItem("name","score");
+    console.log(score);
     Context.setAttribute("class","hide"); //the set attribute added the class of hide for the questions 
 }
-
+function save(){
+    var name= document.getElementById("nameInput").value;
+    localStorage.setItem("score",score);
+    localStorage.setItem("name",name);
+    }
+document.getElementById("SaveBtn").addEventListener("click",save);
