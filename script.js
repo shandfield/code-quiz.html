@@ -62,8 +62,9 @@ function startQuiz(){
     timerID= setInterval(clock,1000)//calling the timer and wanting it to run at 1000 millseconds 
     timeEL.textContent=time;//this gives the time Element the number 
     getQuestions(); 
+    
     }
-startButton.onclick= startQuiz; 
+startButton.onclick= startQuiz;
 
 function getQuestions(){
       var currentQuestion= questions[QuestionIndex];
@@ -91,12 +92,12 @@ function questionClick(){
         score++;
     }
     QuestionIndex ++; //this moves the question to the next one 
-    if (QuestionIndex=== questions.length){//this will stop the questions 
+        if (QuestionIndex=== questions.length){//this will stop the questions 
         endquiz()//calling the function
-    } else {//if there are still questions to keep going
+        } else{//if there are still questions to keep going
         getQuestions ()//calling the function 
+        }
     }
-}
 
 function clock (){//clock is used due to calling it from above
     time--;//due to decreasing one each time 
@@ -117,8 +118,19 @@ function endquiz(){//need to stop the timer
     Context.setAttribute("class","hide"); //the set attribute added the class of hide for the questions 
 }
 function save(){
+    var highScore= document.getElementById("highScores");
     var name= document.getElementById("nameInput").value;
+        highScore.removeAttribute("class");
     localStorage.setItem("score",score);
     localStorage.setItem("name",name);
-    }
+    event.preventDefault(startQuiz);//added this 
+        printhighscores();
+     }
 document.getElementById("SaveBtn").addEventListener("click",save);
+
+function printhighscores(){
+    var highScores= JSON.parse(localStorage.getItem("score"));
+    var highName= localStorage.getItem("name");
+    var high= document.getElementById("High");
+    high.append(highName,highScores)
+}
