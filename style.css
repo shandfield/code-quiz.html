@@ -1,27 +1,37 @@
-body {
-  background-color: ivory;
-  margin: auto; 
+head{
+  background-color: bisque;
+  margin: auto;
+  text-align: center;
 }
-
 h1{
+  background-color: blanchedalmond;
   color: limegreen;
   font-size: 45px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: auto;
+  text-align: center;
 }
+body {
+  background-color: mintcream;
+  margin: auto; 
+  text-align: center;
 
+}
 h4{
+  background-color: mintcream;
   color: darkgreen;
   font-size: 30px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: auto;
 }
 p{
-  color: mediumseagreen;
+  background-color: mintcream;
+  color: darkolivegreen;
   font-size: 25px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: auto;
 }
 
-.Hide{
+.hide{
   display: none;
   }
