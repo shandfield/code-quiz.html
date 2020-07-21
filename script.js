@@ -56,8 +56,9 @@ var questions = [
   var score= 0; //need a function for score
 
 function startQuiz(){
+    
     var begin= document.getElementById("Begin");
-        begin.setAttribute( "class", "Hide");
+        begin.setAttribute( "class", "hide");
         Context.removeAttribute("class");
     timerID= setInterval(clock,1000)//calling the timer and wanting it to run at 1000 millseconds 
     timeEL.textContent=time;//this gives the time Element the number 
@@ -123,7 +124,7 @@ function save(){
         highScore.removeAttribute("class");
     localStorage.setItem("score",score);
     localStorage.setItem("name",name);
-    event.preventDefault(startQuiz);//added this 
+    event.preventDefault(startQuiz);//added this: this just stops the page from refreshing 
         printhighscores();
      }
 document.getElementById("SaveBtn").addEventListener("click",save);
